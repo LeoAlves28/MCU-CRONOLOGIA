@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCU — Cronologia</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .account-card{margin-bottom:18px;padding:18px 20px;border:1px solid #34343a;border-radius:16px;background:linear-gradient(135deg,#17171c,#111114);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+    .account-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .account-heading h2{margin:0;font-size:18px}.account-heading p{margin:6px 0 0;color:#aaa;font-size:13px}
+    .cloud-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(239,68,68,.12);color:#f87171;font-size:22px}
+    .account-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .account-form label{display:grid;gap:6px;color:#c9c9cf;font-size:12px;font-weight:700}
+    .account-form input{width:100%;padding:11px 12px;background:#0d0d10;color:#fff;border:1px solid #38383f;border-radius:9px;outline:none}
+    .account-form input:focus{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.12)}
+    .account-actions{grid-column:1/-1;display:flex;gap:9px}
+    .account-actions button,.logout-button{border:1px solid rgba(239,68,68,.35);background:linear-gradient(135deg,#9f1717,#641010);color:#fff;padding:10px 14px;border-radius:9px;cursor:pointer;font-weight:700}
+    .account-actions button:hover,.logout-button:hover{border-color:#ef4444;filter:brightness(1.12)}
+    .account-actions button:disabled{opacity:.55;cursor:not-allowed}.account-actions #registerButton{background:#242429;color:#eee}
+    .logout-button{margin-top:8px}.account-hint{margin:12px 0 0;color:#85858d;font-size:12px;line-height:1.5}
+    .account-status.error{color:#f87171}[hidden]{display:none!important}
+    @media(max-width:600px){.account-form{grid-template-columns:1fr}.account-actions{grid-column:auto}.account-actions button{flex:1}.account-card{padding:16px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="brand"><span class="brand-mark">✦</span> WATCHLIST</div>
+    <h1>CRONOLOGIA DO MCU</h1>
+    <p>Marque o que você já assistiu e acompanhe seu progresso.</p>
+  </header>
+
+  <main>
+    <section class="account-card" aria-labelledby="accountTitle">
+      <div class="account-heading">
+        <div>
+          <h2 id="accountTitle">Sincronize seu progresso</h2>
+          <p id="accountStatus" class="account-status" role="status" aria-live="polite">Seu progresso está salvo neste navegador.</p>
+        </div>
+        <span class="cloud-mark" aria-hidden="true">☁</span>
+      </div>
+      <form id="accountForm" class="account-form">
+        <label>
+          E-mail
+          <input id="accountEmail" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+        </label>
+        <label>
+          Senha
+          <input id="accountPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="Pelo menos 6 caracteres">
+        </label>
+        <div class="account-actions">
+          <button id="loginButton" type="submit">Entrar</button>
+          <button id="registerButton" type="button">Criar conta</button>
+        </div>
+      </form>
+      <button id="logoutButton" class="logout-button" type="button" hidden>Sair da conta</button>
+      <p id="accountHint" class="account-hint">Use a mesma conta nos seus dispositivos. Veja FIREBASE_SETUP.md para configurar a sincronização.</p>
+    </section>
+
+    <section class="progress-card">
+      <div class="progress-top">
+        <div><strong id="progressText">0/0</strong> assistidos</div>
+        <div id="percent">0%</div>
+      </div>
+      <div class="bar"><div id="barFill"></div></div>
+      <div class="actions">
+        <button id="reset">Desmarcar tudo</button>
+        <button id="toggleCompleted">Ocultar concluídos</button>
+      </div>
+    </section>
+
+    <section class="controls">
+      <input id="search" type="search" placeholder="🔎 Procurar filme, série ou curta...">
+      <div class="filters">
+        <button class="filter active" data-filter="all">Todos</button>
+        <button class="filter" data-filter="filme">🎬 Filmes</button>
+        <button class="filter" data-filter="serie">📺 Séries</button>
+        <button class="filter" data-filter="curta">🎞️ Curtas / Especiais</button>
+        <button class="filter" data-filter="animacao">✨ Animações</button>
+      </div>
+    </section>
+
+    <div id="list"></div>
+  </main>
+
+  <footer>Sem login, seu progresso fica salvo neste navegador. Com login, ele sincroniza entre dispositivos.</footer>
+  <script src="script.js"></script>
+</body>
+</html>

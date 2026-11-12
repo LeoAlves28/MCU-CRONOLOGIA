@@ -367,6 +367,10 @@ const key="mcu-watch-v2", guestKey="mcu-watch-guest-v1", legacyKey="mcu-watch-v1
 const itemId=item=>item[1].normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const watchLinksByTitle=new Map();
 const addWatchLinks=(url,...titles)=>titles.forEach(title=>watchLinksByTitle.set(title,url));
+const watchHref=url=>{
+ if(!/Android/i.test(navigator.userAgent)||!url.startsWith("https://www.primevideo.com/")) return url;
+ return `intent://${url.slice("https://".length)}#Intent;scheme=https;package=com.amazon.avod.thirdpartyclient;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+};
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8d16eb3d-b7e5-4c43-abda-a281be4d284a","Olhos de Wakanda — Temporada 1");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8e68c43a-117c-4f4d-b217-0db106a1a614","Capitão América: O Primeiro Vingador");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-5e7f5aa1-b3ea-4cd3-983f-c5cda970fb0a","Agente Carter");
@@ -687,7 +691,7 @@ function render(){
    shown++;
    const watchUrl=watchLinksByTitle.get(title);
    const watchButton=watchUrl
-    ?`<a class="watch-button" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ${title}">▶ Assista</a>`
+    ?`<a class="watch-button" href="${watchHref(watchUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ${title}">▶ Assista</a>`
     :title==="Vingadores: Doomsday"?'<button class="watch-button" type="button" disabled>▶ Em breve</button>':"";
    const row=document.createElement("div");row.className="item"+(done?" done":"");
    row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(i+1).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<span class="tag">${phase}</span></span>`;

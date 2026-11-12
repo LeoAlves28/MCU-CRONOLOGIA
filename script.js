@@ -546,6 +546,17 @@ if(!guestStored&& !hasStableLocal){
 saved=normalizeCompleted(saved);
 let filter="all", hideCompleted=false;
 const $=s=>document.querySelector(s);
+const themeToggle=$("#themeToggle");
+const setTheme=theme=>{
+ const selectedTheme=theme==="light"?"light":"dark";
+ const label=selectedTheme==="light"?"Ativar modo escuro":"Ativar modo claro";
+ document.documentElement.dataset.theme=selectedTheme;
+ themeToggle.setAttribute("aria-label",label);
+ themeToggle.title=label;
+ localStorage.setItem("mcu-theme",selectedTheme);
+};
+setTheme(document.documentElement.dataset.theme);
+themeToggle.addEventListener("click",()=>setTheme(document.documentElement.dataset.theme==="light"?"dark":"light"));
 let auth=null, db=null, currentUser=null, cloudReady=false;
 let syncQueue=Promise.resolve();
 let cloudLoadPromise=Promise.resolve();

@@ -367,10 +367,19 @@ const key="mcu-watch-v2", guestKey="mcu-watch-guest-v1", legacyKey="mcu-watch-v1
 const itemId=item=>item[1].normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const watchLinksByTitle=new Map();
 const addWatchLinks=(url,...titles)=>titles.forEach(title=>watchLinksByTitle.set(title,url));
+const primeVideoGtis=new Map([
+ ["0OM7MFDYVTIFM3VEYX1XTM8WBL","amzn1.dv.gti.9fcf828f-abd4-4278-ad6c-49695d070fa1"],
+ ["0IDPIWRVOMSGAQ81Y88AXQS1VC","amzn1.dv.gti.367951ca-7f19-4a9d-a074-73fe97e61678"],
+ ["0MWHMB6HRHOFQ0VDX19GHA5QYD","amzn1.dv.gti.82d9b8b5-4823-463f-a8fe-10b5107f85b5"],
+ ["0Q4FB2E2GRPW2QG74W9MDCF9B3","amzn1.dv.gti.b93f5ee1-b6a5-4808-a8f0-fe175e745cdf"],
+ ["0LVG7BU0Y4IAWKWJ4Z6MLB0NUT","amzn1.dv.gti.7178bbd3-186d-4285-a61e-81d2270db7c5"],
+ ["0MH84EJKE2M4I598UISANJRS1X","amzn1.dv.gti.7bb04e11-fe7f-4528-bd0e-84d1312f15c5"]
+]);
 const watchHref=url=>{
  const primeVideoId=url.match(/^https:\/\/www\.primevideo\.com\/detail\/([^/?]+)/);
- if(!/Android/i.test(navigator.userAgent)||!primeVideoId) return url;
- return `intent://www.primevideo.com/detail/${primeVideoId[1]}#Intent;scheme=https;package=com.amazon.avod.thirdpartyclient;end`;
+ const primeVideoGti=primeVideoId&&primeVideoGtis.get(primeVideoId[1]);
+ if(!/Android/i.test(navigator.userAgent)||!primeVideoGti) return url;
+ return `https://app.primevideo.com/detail?gti=${primeVideoGti}`;
 };
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8d16eb3d-b7e5-4c43-abda-a281be4d284a","Olhos de Wakanda — Temporada 1");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8e68c43a-117c-4f4d-b217-0db106a1a614","Capitão América: O Primeiro Vingador");

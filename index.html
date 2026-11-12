@@ -14,6 +14,30 @@
   </header>
 
   <main>
+    <section class="auth-card" aria-labelledby="authTitle">
+      <h2 id="authTitle">Sincronize seu progresso</h2>
+      <p id="authStatus" class="auth-status" role="status" aria-live="polite" hidden></p>
+      <form id="authForm">
+        <label>
+          E-mail
+          <input id="authEmail" type="email" placeholder="voce@exemplo.com" autocomplete="email" required>
+        </label>
+        <label>
+          Senha
+          <input id="authPassword" type="password" placeholder="Pelo menos 6 caracteres" autocomplete="current-password" minlength="6" required>
+        </label>
+        <div class="auth-actions">
+          <button class="auth-primary" type="submit">Entrar</button>
+          <button id="createAccount" type="button">Criar conta</button>
+        </div>
+      </form>
+      <div id="accountControls" class="account-controls" hidden>
+        <span id="accountEmail"></span>
+        <button id="signOut" type="button">Sair</button>
+      </div>
+      <p class="auth-help">Use a mesma conta nos seus dispositivos.</p>
+    </section>
+
     <section class="progress-card">
       <div class="progress-top">
         <div><strong id="progressText">0/0</strong> assistidos</div>
@@ -41,6 +65,10 @@
   </main>
 
   <footer>Seu progresso fica salvo neste navegador automaticamente.</footer>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

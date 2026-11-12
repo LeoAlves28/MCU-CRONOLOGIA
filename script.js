@@ -363,6 +363,26 @@ const items=displayOrder.map(title=>{
 if(items.length!==itemByTitle.size||new Set(displayOrder).size!==itemByTitle.size){
  throw new Error("A ordem de exibição não corresponde ao catálogo.");
 }
+const doomsdayCoreTitles=new Set([
+ "Os Vingadores",
+ "Vingadores: Era de Ultron",
+ "Capitão América: Guerra Civil",
+ "Vingadores: Guerra Infinita",
+ "Vingadores: Ultimato",
+ "WandaVision — Temporada 1",
+ "Homem-Formiga e a Vespa",
+ "Homem-Aranha: Sem Volta para Casa",
+ "Doutor Estranho no Multiverso da Loucura",
+ "Shang-Chi e a Lenda dos Dez Anéis",
+ "Pantera Negra: Wakanda Para Sempre",
+ "Homem-Formiga e a Vespa: Quantumania",
+ "Thunderbolts*",
+ "Visionquest — Temporada 1"
+]);
+const doomsdayExcludedTitles=new Set(["Marvel Zombies — Temporada 1"]);
+const doomsdayTitles=new Set(items
+ .filter(([,title,,phase])=>!doomsdayExcludedTitles.has(title)&&(phase==="Multiverso"||doomsdayCoreTitles.has(title)))
+ .map(([,title])=>title));
 const key="mcu-watch-v2", guestKey="mcu-watch-guest-v1", legacyKey="mcu-watch-v1";
 const itemId=item=>item[1].normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const watchLinksByTitle=new Map();
@@ -694,7 +714,8 @@ function render(){
  items.forEach((it,i)=>{
    const id=itemId(it), done=!!saved[id];
    const [type,title,meta,phase]=it;
-   if(filter!=="all" && !(filter==="animacao" ? meta.includes("Animação") : type===filter)) return;
+   if(filter==="doomsday"&&!doomsdayTitles.has(title))return;
+   if(filter!=="all"&&filter!=="doomsday"&&!(filter==="animacao"?meta.includes("Animação"):type===filter))return;
    if(hideCompleted&&done)return;
    if(q && !title.toLowerCase().includes(q))return;
    if(phase!==currentPhase){currentPhase=phase;const h=document.createElement("div");h.className="phase";h.textContent=phase;list.appendChild(h)}

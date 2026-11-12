@@ -155,7 +155,7 @@ const allItems=[
 ["filme","X-Men: Fênix Negra","Filme / Universo Fox","Multiverso"],
 ["filme","X-Men","Filme / Universo Fox","Multiverso"],
 ["filme","X-Men 2","Filme / Universo Fox","Multiverso"],
-["filme","X-Men: O Confronto Final","Filme / Universo Fox","Multiverso"],
+["filme","X-Men 3: O Confronto Final","Filme / Universo Fox","Multiverso"],
 ["filme","The Wolverine: Imortal","Filme / Universo Fox","Multiverso"],
 ["filme","Deadpool","Filme / Universo Fox","Multiverso"],
 ["filme","Deadpool 2","Filme / Universo Fox","Multiverso"],
@@ -218,7 +218,151 @@ const allItems=[
 ["filme","Vingadores: Doomsday","Filme","Fase 6"]
 ];
 
-const items=allItems.filter(item=>!item[1].startsWith("Runaways —"));
+const displayOrder=[
+ "Olhos de Wakanda — Temporada 1",
+ "Capitão América: O Primeiro Vingador",
+ "Agente Carter",
+ "Agente Carter — Temporada 1",
+ "Agente Carter — Temporada 2",
+ "Capitã Marvel",
+ "Homem de Ferro",
+ "Homem de Ferro 2",
+ "Uma Coisa Engraçada Aconteceu no Caminho para o Martelo de Thor",
+ "O Incrível Hulk",
+ "O Consultor",
+ "Thor",
+ "Os Vingadores",
+ "Artigo 47",
+ "Homem de Ferro 3",
+ "Todos Saúdem o Rei",
+ "Thor: O Mundo Sombrio",
+ "Capitão América: O Soldado Invernal",
+ "Agents of S.H.I.E.L.D. — Temporada 1",
+ "Guardiões da Galáxia",
+ "Guardiões da Galáxia Vol. 2",
+ "Agents of S.H.I.E.L.D. — Temporada 2",
+ "Eu Sou Groot — Temporada 1",
+ "Eu Sou Groot — Temporada 2",
+ "Vingadores: Era de Ultron",
+ "Homem-Formiga",
+ "Agents of S.H.I.E.L.D. — Temporada 3",
+ "Demolidor — Temporada 1",
+ "Jessica Jones — Temporada 1",
+ "Demolidor — Temporada 2",
+ "Luke Cage — Temporada 1",
+ "Punho de Ferro — Temporada 1",
+ "Os Defensores — Temporada 1",
+ "Capitão América: Guerra Civil",
+ "Equipe Thor Parte 1",
+ "Viúva Negra",
+ "O Justiceiro — Temporada 1",
+ "Jessica Jones — Temporada 2",
+ "Luke Cage — Temporada 2",
+ "Punho de Ferro — Temporada 2",
+ "Agents of S.H.I.E.L.D. — Temporada 4",
+ "Pantera Negra",
+ "Homem-Aranha: De Volta ao Lar",
+ "Doutor Estranho",
+ "Equipe Thor Parte 2",
+ "Agents of S.H.I.E.L.D. — Temporada 5",
+ "O Justiceiro — Temporada 2",
+ "Jessica Jones — Temporada 3",
+ "Manto e Adaga — Temporada 1",
+ "Manto e Adaga — Temporada 2",
+ "Inumanos — Temporada 1",
+ "Thor: Ragnarok",
+ "Equipe Darryl",
+ "Homem-Formiga e a Vespa",
+ "Vingadores: Guerra Infinita",
+ "Vingadores: Ultimato",
+ "Agents of S.H.I.E.L.D. — Temporada 6",
+ "Agents of S.H.I.E.L.D. — Temporada 7",
+ "WandaVision — Temporada 1",
+ "Loki — Temporada 1",
+ "Falcão e o Soldado Invernal — Temporada 1",
+ "Shang-Chi e a Lenda dos Dez Anéis",
+ "Eternos",
+ "Homem-Aranha: Longe de Casa",
+ "Homem-Aranha",
+ "Homem-Aranha 2",
+ "Homem-Aranha 3",
+ "O Espetacular Homem-Aranha",
+ "O Espetacular Homem-Aranha 2: A Ameaça de Electro",
+ "Homem-Aranha: Sem Volta para Casa",
+ "Gavião Arqueiro — Temporada 1",
+ "Echo — Temporada 1",
+ "Cavaleiro da Lua — Temporada 1",
+ "Doutor Estranho no Multiverso da Loucura",
+ "Ms. Marvel — Temporada 1",
+ "Thor: Amor e Trovão",
+ "Pantera Negra: Wakanda Para Sempre",
+ "Ironheart — Temporada 1",
+ "Mulher-Hulk: Defensora de Heróis — Temporada 1",
+ "Lobisomem na Noite",
+ "Guardiões da Galáxia: Especial de Festas",
+ "Homem-Formiga e a Vespa: Quantumania",
+ "Invasão Secreta — Temporada 1",
+ "Guardiões da Galáxia Vol. 3",
+ "As Marvels",
+ "Loki — Temporada 2",
+ "What If...? — Temporada 1",
+ "What If...? — Temporada 2",
+ "What If...? — Temporada 3",
+ "Agatha Desde Sempre — Temporada 1",
+ "Visionquest — Temporada 1",
+ "Demolidor: Renascido — Temporada 1",
+ "Capitão América: Admirável Mundo Novo",
+ "Thunderbolts*",
+ "X-Men: Primeira Classe",
+ "X-Men: Dias de um Futuro Esquecido",
+ "X-Men Origens: Wolverine",
+ "X-Men: Apocalipse",
+ "X-Men: Fênix Negra",
+ "X-Men",
+ "X-Men 2",
+ "X-Men 3: O Confronto Final",
+ "The Wolverine: Imortal",
+ "Deadpool",
+ "Deadpool 2",
+ "Os Novos Mutantes",
+ "Logan",
+ "X-Men — Temporadas 1–5",
+ "X-Men '97 — Temporada 1",
+ "Homem-Aranha no Aranhaverso",
+ "Homem-Aranha: Através do Aranhaverso",
+ "Madame Teia",
+ "Venom",
+ "Venom: Tempo de Carnificina",
+ "Venom: A Última Dança",
+ "Morbius",
+ "Kraven, o Caçador",
+ "Blade: O Caçador de Vampiros",
+ "Blade II",
+ "Blade: Trinity",
+ "Demolidor: O Homem Sem Medo",
+ "Elektra",
+ "Quarteto Fantástico (2005)",
+ "Quarteto Fantástico e o Surfista Prateado (2007)",
+ "Deadpool & Wolverine",
+ "Seu Amigão da Vizinhança Homem-Aranha — Temporada 1",
+ "Marvel Zombies — Temporada 1",
+ "Quarteto Fantástico: Primeiros Passos",
+ "Demolidor: Renascido — Temporada 2",
+ "Wonder Man — Temporada 1",
+ "O Justiceiro: Uma Última Morte",
+ "Homem-Aranha: Um Novo Dia",
+ "Vingadores: Doomsday"
+];
+const displayableItems=allItems.filter(item=>!item[1].startsWith("Runaways —"));
+const itemByTitle=new Map(displayableItems.map(item=>[item[1],item]));
+const items=displayOrder.map(title=>{
+ const item=itemByTitle.get(title);
+ if(!item) throw new Error(`Título ausente na ordem de exibição: ${title}`);
+ return item;
+});
+if(items.length!==itemByTitle.size||new Set(displayOrder).size!==itemByTitle.size){
+ throw new Error("A ordem de exibição não corresponde ao catálogo.");
+}
 const key="mcu-watch-v2", guestKey="mcu-watch-guest-v1", legacyKey="mcu-watch-v1";
 const itemId=item=>item[1].normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const watchLinksByTitle=new Map();
@@ -305,7 +449,7 @@ addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-3ea207ed-b92e-4e71
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-180356b5-0596-4333-891f-e48c526a0803","X-Men: Fênix Negra");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-e9f59c82-de76-4a18-a849-192532ff9b2d","X-Men");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-54748282-5bf7-496c-8db9-a9aa3b7f57ac","X-Men 2");
-addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-e0f6bbed-cea5-41c1-b787-478f21255898","X-Men: O Confronto Final");
+addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-e0f6bbed-cea5-41c1-b787-478f21255898","X-Men 3: O Confronto Final");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-0f3b4bfe-aa16-43f2-8a11-d5586c6e6c8f","The Wolverine: Imortal");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-17854bdb-0121-4327-80a0-699fdecd1aaa","Deadpool");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-27e84e56-31d3-4813-91ba-602cb52890f1","Deadpool 2");
@@ -336,15 +480,10 @@ addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-3a33d136-e4c1-4d07
 addWatchLinks("https://pluto.tv/br/movies/6a2c47b97918fece01993d68/","Elektra");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-d6592baa-0dc6-4549-a0cb-3b93a3b0e260","Quarteto Fantástico (2005)");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-06810fd3-a12e-4185-829b-36b3c814ce97","Quarteto Fantástico e o Surfista Prateado (2007)");
-const addToWatchlistTitles=new Set([
- "Equipe Thor Parte 1","Equipe Thor Parte 2","Equipe Darryl","Visionquest — Temporada 1",
- "Blade: O Caçador de Vampiros","Blade II","Blade: Trinity","Demolidor: O Homem Sem Medo",
- "Elektra","Quarteto Fantástico (2005)","Quarteto Fantástico e o Surfista Prateado (2007)",
- "Homem-Aranha: Um Novo Dia"
-]);
 const renamedItemIds=new Map([
  [itemId(["curta","O Justiceiro: Um Último Crime"]),itemId(["curta","O Justiceiro: Uma Última Morte"])],
- [itemId(["filme","Venom: A Última Rodada"]),itemId(["filme","Venom: A Última Dança"])]
+ [itemId(["filme","Venom: A Última Rodada"]),itemId(["filme","Venom: A Última Dança"])],
+ [itemId(["filme","X-Men: O Confronto Final"]),itemId(["filme","X-Men 3: O Confronto Final"])]
 ]);
 function normalizeCompleted(completed){
  const normalized={...completed};
@@ -547,10 +686,9 @@ function render(){
    if(phase!==currentPhase){currentPhase=phase;const h=document.createElement("div");h.className="phase";h.textContent=phase;list.appendChild(h)}
    shown++;
    const watchUrl=watchLinksByTitle.get(title);
-   const actionLabel=addToWatchlistTitles.has(title)?"＋ Adicionar à lista":"▶ Assista";
    const watchButton=watchUrl
-    ?`<a class="watch-button" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="${actionLabel} ${title}">${actionLabel}</a>`
-    :title==="Vingadores: Doomsday"?'<button class="watch-button" type="button" disabled>Em breve</button>':"";
+    ?`<a class="watch-button" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ${title}">▶ Assista</a>`
+    :title==="Vingadores: Doomsday"?'<button class="watch-button" type="button" disabled>▶ Em breve</button>':"";
    const row=document.createElement("div");row.className="item"+(done?" done":"");
    row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(i+1).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<span class="tag">${phase}</span></span>`;
    row.querySelector("input").addEventListener("change",e=>{saved[id]=e.target.checked;saveProgress();update();});

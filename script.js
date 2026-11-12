@@ -400,7 +400,7 @@ addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-abc1bb00-77b3-40e0
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-d9cd6bd1-bcf8-4a3b-8f92-0fdd4f79ac08","Viúva Negra");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-bbe154ae-af21-49dd-8129-90077e61c991","O Justiceiro — Temporada 1","O Justiceiro — Temporada 2");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8904b1b5-da2c-4ff1-b389-dc81825559fd","Pantera Negra");
-addWatchLinks("https://www.hbomax.com/movie/7f004664-80b9-4a8c-a4f1-5405ff9c67a5","Homem-Aranha: De Volta ao Lar");
+addWatchLinks("https://play.max.com/movie/7f004664-80b9-4a8c-a4f1-5405ff9c67a5","Homem-Aranha: De Volta ao Lar");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-43a741e8-2369-4577-9bec-ef94f4aaae0b","Doutor Estranho");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-6d346cdb-d46c-43af-b6c2-eb47c56b1426","Equipe Thor Parte 2");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-b83bebc2-abcc-41fb-9e33-ec81d1bfcfba","Manto e Adaga — Temporada 1","Manto e Adaga — Temporada 2");
@@ -416,9 +416,9 @@ addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-3c08a31a-2350-4aaf
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-92243dd0-bcfe-4365-ae76-1fa3cf1a2ab9","Shang-Chi e a Lenda dos Dez Anéis");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-b042efa2-6650-48fd-bf35-ea285a5a5649","Eternos");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-6e497c43-d4da-4e12-b100-d4d38dc2a7ff","Homem-Aranha: Longe de Casa");
-addWatchLinks("https://www.hbomax.com/movie/52c902ab-d1ff-4e18-9326-31641a07ed9a","Homem-Aranha");
-addWatchLinks("https://www.hbomax.com/movie/0c4aa45c-7033-4700-afa6-818b624fc88a","Homem-Aranha 2");
-addWatchLinks("https://www.hbomax.com/movie/ccddf6f0-0c45-406b-bd56-d23425f538d2","Homem-Aranha 3");
+addWatchLinks("https://play.max.com/movie/52c902ab-d1ff-4e18-9326-31641a07ed9a","Homem-Aranha");
+addWatchLinks("https://play.max.com/movie/0c4aa45c-7033-4700-afa6-818b624fc88a","Homem-Aranha 2");
+addWatchLinks("https://play.max.com/movie/ccddf6f0-0c45-406b-bd56-d23425f538d2","Homem-Aranha 3");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-f43ffe63-2c96-4b6c-8fae-84d0d22d6466","O Espetacular Homem-Aranha");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-c21c733a-18f4-4cdc-b1e8-1ff6b996c0a3","O Espetacular Homem-Aranha 2: A Ameaça de Electro");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-295fb45a-c8bb-477e-816f-b0706b4d9984","Homem-Aranha: Sem Volta para Casa");
@@ -459,8 +459,8 @@ addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8eaac297-16fe-4d83
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8dc91ed4-cdca-4fab-9723-d3d42f382d34","X-Men '97 — Temporada 1");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-e4cd7619-7c84-4b4d-acf0-f53ca1b442a3","Homem-Aranha no Aranhaverso");
 addWatchLinks("https://www.netflix.com/title/81594921","Homem-Aranha: Através do Aranhaverso");
-addWatchLinks("https://www.primevideo.com/-/pt/detail/0OM7MFDYVTIFM3VEYX1XTM8WBL","Madame Teia");
-addWatchLinks("https://www.hbomax.com/movie/d9b022d2-88a7-4ba2-94f6-8e9d9c23c8e5","Venom");
+addWatchLinks("https://www.primevideo.com/detail/0OM7MFDYVTIFM3VEYX1XTM8WBL","Madame Teia");
+addWatchLinks("https://play.max.com/movie/d9b022d2-88a7-4ba2-94f6-8e9d9c23c8e5","Venom");
 addWatchLinks("https://www.primevideo.com/detail/0IDPIWRVOMSGAQ81Y88AXQS1VC?ref_=atv_sr_fle_c_sr782405_pvsearchresults_1_2","Venom: Tempo de Carnificina");
 addWatchLinks("https://www.primevideo.com/detail/0MWHMB6HRHOFQ0VDX19GHA5QYD?ref_=atv_sr_fle_c_sr782405_pvsearchresults_1_1","Venom: A Última Dança");
 addWatchLinks("https://www.primevideo.com/detail/0Q4FB2E2GRPW2QG74W9MDCF9B3?ref_=atv_sr_fle_c_sr782405_pvsearchresults_1_1","Morbius");
@@ -471,11 +471,11 @@ addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-d274138a-7c29-4ddf
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-2142a7a9-4c49-438d-a492-296c4e08b714","Quarteto Fantástico: Primeiros Passos");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-25ee768f-06e3-491c-ad8f-876b4c87ac42","Wonder Man — Temporada 1");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-c5b69f75-f159-4749-873d-9a1d1a4eb878","O Justiceiro: Uma Última Morte");
-addWatchLinks("https://www.primevideo.com/-/pt/detail/0MH84EJKE2M4I598UISANJRS1X","Homem-Aranha: Um Novo Dia");
+addWatchLinks("https://www.primevideo.com/detail/0MH84EJKE2M4I598UISANJRS1X","Homem-Aranha: Um Novo Dia");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8744ec55-8d14-4631-99b4-c889a2d6013f","Visionquest — Temporada 1");
-addWatchLinks("https://www.hbomax.com/movie/5f6959c1-de3f-4bd4-b279-dc31d9f7aa32","Blade: O Caçador de Vampiros");
-addWatchLinks("https://www.hbomax.com/movie/482de592-6794-4428-a94d-332e37b96ca3","Blade II");
-addWatchLinks("https://www.hbomax.com/movie/34d875d0-936a-4515-a6c4-087c1a6cb04f","Blade: Trinity");
+addWatchLinks("https://play.max.com/movie/5f6959c1-de3f-4bd4-b279-dc31d9f7aa32","Blade: O Caçador de Vampiros");
+addWatchLinks("https://play.max.com/movie/482de592-6794-4428-a94d-332e37b96ca3","Blade II");
+addWatchLinks("https://play.max.com/movie/34d875d0-936a-4515-a6c4-087c1a6cb04f","Blade: Trinity");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-3a33d136-e4c1-4d07-bc6b-f9bb179e86d8","Demolidor: O Homem Sem Medo");
 addWatchLinks("https://pluto.tv/br/movies/6a2c47b97918fece01993d68/","Elektra");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-d6592baa-0dc6-4549-a0cb-3b93a3b0e260","Quarteto Fantástico (2005)");

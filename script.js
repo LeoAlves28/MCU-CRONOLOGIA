@@ -370,7 +370,7 @@ const addWatchLinks=(url,...titles)=>titles.forEach(title=>watchLinksByTitle.set
 const watchHref=url=>{
  const primeVideoId=url.match(/^https:\/\/www\.primevideo\.com\/detail\/([^/?]+)/);
  if(!/Android/i.test(navigator.userAgent)||!primeVideoId) return url;
- return `https://app.primevideo.com/detail?gti=${encodeURIComponent(primeVideoId[1])}`;
+ return `intent://www.primevideo.com/detail/${primeVideoId[1]}#Intent;scheme=https;package=com.amazon.avod.thirdpartyclient;end`;
 };
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8d16eb3d-b7e5-4c43-abda-a281be4d284a","Olhos de Wakanda — Temporada 1");
 addWatchLinks("https://www.disneyplus.com/pt-br/browse/entity-8e68c43a-117c-4f4d-b217-0db106a1a614","Capitão América: O Primeiro Vingador");

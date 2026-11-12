@@ -669,6 +669,17 @@ function initializeFirebase(){
   form.querySelectorAll("button").forEach(button=>button.disabled=true);
   return;
  }
+ if(!window.MCU_FIREBASE_CONFIG.measurementId){
+  console.warn("Firebase Analytics não inicializado: adicione o measurementId à configuração Web.");
+ }else if(typeof firebase.analytics!=="function"){
+  console.error("Firebase Analytics não inicializado: o SDK de Analytics não foi carregado.");
+ }else{
+  try{
+   firebase.analytics();
+  }catch(error){
+   console.error("Falha ao inicializar Firebase Analytics:",error);
+  }
+ }
 
  form.addEventListener("submit",async event=>{
   event.preventDefault();

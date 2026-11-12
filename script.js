@@ -711,7 +711,7 @@ function render(){
  list.innerHTML="";
  let shown=0;
  let currentPhase="";
- items.forEach((it,i)=>{
+ items.forEach(it=>{
    const id=itemId(it), done=!!saved[id];
    const [type,title,meta,phase]=it;
    if(filter==="doomsday"&&!doomsdayTitles.has(title))return;
@@ -725,7 +725,7 @@ function render(){
     ?`<a class="watch-button" href="${watchHref(watchUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ${title}">▶ Assista</a>`
     :title==="Vingadores: Doomsday"?'<button class="watch-button" type="button" disabled>▶ Em breve</button>':"";
    const row=document.createElement("div");row.className="item"+(done?" done":"");
-   row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(i+1).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<span class="tag">${phase}</span></span>`;
+   row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(shown).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<span class="tag">${phase}</span></span>`;
    row.querySelector("input").addEventListener("change",e=>{saved[id]=e.target.checked;saveProgress();update();});
    list.appendChild(row);
  });

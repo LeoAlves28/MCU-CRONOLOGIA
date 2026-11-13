@@ -63,3 +63,25 @@ html[data-theme="light"] .theme-toggle{background:#fff;border-color:#d3d2d7;colo
 .back-to-top svg{width:24px;height:24px}
 .back-to-top[hidden]{display:none}
 @media(max-width:600px){.back-to-top{right:16px;bottom:16px}}
+.poster-button{border:1px solid #494950;border-radius:999px;background:#202025;color:#eee;padding:7px 10px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}
+.poster-button:hover{border-color:#e62429;color:#fff}
+.poster-button:focus-visible,.poster-close:focus-visible{outline:2px solid #e62429;outline-offset:3px}
+.item-actions{flex-wrap:wrap}
+.poster-dialog{position:fixed;inset:0;margin:auto;width:min(380px,calc(100% - 32px));max-height:calc(100vh - 32px);padding:18px;border:1px solid #45454d;border-radius:16px;background:#151519;color:#f5f5f5;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.poster-dialog::backdrop{background:rgba(0,0,0,.72)}
+.poster-close{position:absolute;top:24px;right:24px;z-index:1;display:grid;width:36px;height:36px;place-items:center;border:1px solid #555;border-radius:50%;background:rgba(15,15,18,.82);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.poster-art{width:min(100%,300px);aspect-ratio:2/3;margin:0 auto 16px;overflow:hidden;border-radius:10px;background:radial-gradient(ellipse at 50% 20%,#641b21,#171316 72%)}
+.poster-art img{display:block;width:100%;height:100%;object-fit:contain}
+.poster-art img[hidden]{display:none}
+.poster-placeholder{display:flex;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}
+.poster-placeholder[hidden]{display:none}
+.poster-placeholder-brand{color:#ffb1b1;font-size:11px;font-weight:900;letter-spacing:2px}
+.poster-placeholder strong{font-size:clamp(22px,6vw,32px);line-height:1.15;text-transform:uppercase}
+.poster-placeholder span:last-child{color:#d1b3b4;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.poster-info{text-align:center}
+.poster-info h2{margin:0;font-size:20px}
+.poster-info p{margin:7px 0 0;color:#aaa;font-size:13px}
+html[data-theme="light"] .poster-dialog{border-color:#dedde0;background:#fff;color:#202024}
+html[data-theme="light"] .poster-info p{color:#626269}
+html[data-theme="light"] .poster-button{background:#fff;border-color:#d3d2d7;color:#29292f}
+@media(max-width:600px){.poster-dialog{padding:14px}.poster-close{top:20px;right:20px}.item-actions{grid-column:3;justify-content:flex-start}}

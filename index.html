@@ -86,6 +86,22 @@
   </main>
 
   <footer>Seu progresso fica salvo neste navegador automaticamente.</footer>
+  <dialog id="posterDialog" class="poster-dialog" aria-labelledby="posterTitle">
+    <button id="closePoster" class="poster-close" type="button" aria-label="Fechar pôster">×</button>
+    <div id="posterArt" class="poster-art">
+      <img id="posterImage" alt="" hidden>
+      <div id="posterPlaceholder" class="poster-placeholder">
+        <span class="poster-placeholder-brand">MARVEL STUDIOS</span>
+        <strong id="posterPlaceholderTitle"></strong>
+        <span id="posterPlaceholderPhase"></span>
+      </div>
+    </div>
+    <div class="poster-info">
+      <h2 id="posterTitle"></h2>
+      <p id="posterMeta"></p>
+      <p id="posterStatus"></p>
+    </div>
+  </dialog>
   <button id="backToTop" class="back-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo" hidden>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="m18 15-6-6-6 6"/>

@@ -386,6 +386,15 @@ const doomsdayTitles=new Set(items
 const key="mcu-watch-v2", guestKey="mcu-watch-guest-v1", legacyKey="mcu-watch-v1";
 const itemId=item=>item[1].normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const watchLinksByTitle=new Map();
+const posterAliasesById=new Map([
+ ["agente-carter","agent-carter-one-shot"],
+ ["agente-carter-temporada-1","agente-carter-serie"],
+ ["agente-carter-temporada-2","agente-carter-serie"],
+ ["capitao-america-o-primeiro-vingador","capitao-america-primeiro-vingador"],
+ ["guardioes-da-galaxia-vol-2","guardioes-da-galaxia-2"],
+ ["loki-temporada-1","loki-1"],
+ ["loki-temporada-2","loki-2"]
+]);
 const addWatchLinks=(url,...titles)=>titles.forEach(title=>watchLinksByTitle.set(title,url));
 const primeVideoGtis=new Map([
  ["0OM7MFDYVTIFM3VEYX1XTM8WBL","amzn1.dv.gti.9fcf828f-abd4-4278-ad6c-49695d070fa1"],
@@ -547,6 +556,36 @@ saved=normalizeCompleted(saved);
 let filter="all", hideCompleted=false;
 const $=s=>document.querySelector(s);
 const themeToggle=$("#themeToggle");
+const posterDialog=$("#posterDialog");
+const posterImage=$("#posterImage");
+const posterArt=$("#posterArt");
+const posterPlaceholder=$("#posterPlaceholder");
+const showPoster=(item,done)=>{
+ const [,title,meta,phase]=item;
+ const id=itemId(item);
+ const posterSlug=posterAliasesById.get(id)||id.replace(/-temporada-\d+$/,"");
+ const posterUrl=`posters/${posterSlug}.jpg`;
+ $("#posterTitle").textContent=title;
+ $("#posterMeta").textContent=`${meta} · ${phase}`;
+ $("#posterStatus").textContent=done?"Você já assistiu":"Ainda não assistido";
+ $("#posterPlaceholderTitle").textContent=title;
+ $("#posterPlaceholderPhase").textContent=phase;
+ posterImage.alt=`Pôster de ${title}`;
+ posterArt.style.aspectRatio="2 / 3";
+ if(posterUrl){
+  posterImage.onload=()=>{posterArt.style.aspectRatio=`${posterImage.naturalWidth} / ${posterImage.naturalHeight}`};
+  posterImage.onerror=()=>{posterImage.hidden=true;posterPlaceholder.hidden=false};
+  posterImage.src=posterUrl;
+  posterImage.hidden=false;
+  posterPlaceholder.hidden=true;
+ }else{
+  posterImage.hidden=true;
+  posterImage.removeAttribute("src");
+  posterPlaceholder.hidden=false;
+ }
+ posterDialog.showModal();
+};
+$("#closePoster").addEventListener("click",()=>posterDialog.close());
 const setTheme=theme=>{
  const selectedTheme=theme==="light"?"light":"dark";
  const label=selectedTheme==="light"?"Ativar modo escuro":"Ativar modo claro";
@@ -755,8 +794,9 @@ function render(){
     ?`<a class="watch-button" href="${watchHref(watchUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ${title}">▶ Assista</a>`
     :title==="Vingadores: Doomsday"?'<button class="watch-button" type="button" disabled>▶ Em breve</button>':"";
    const row=document.createElement("div");row.className="item"+(done?" done":"");
-   row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(shown).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<span class="tag">${phase}</span></span>`;
+   row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(shown).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<button class="poster-button" type="button" aria-label="Ver pôster de ${title}" title="Ver pôster">Pôster</button><span class="tag">${phase}</span></span>`;
    row.querySelector("input").addEventListener("change",e=>{saved[id]=e.target.checked;saveProgress();update();});
+   row.querySelector(".poster-button").addEventListener("click",()=>showPoster(it,done));
    list.appendChild(row);
  });
  if(!shown) list.innerHTML='<div class="empty">Nenhum item encontrado.</div>';

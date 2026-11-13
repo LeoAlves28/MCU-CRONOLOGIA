@@ -57,3 +57,9 @@ html[data-theme="light"] .disney-countdown-link{background:rgba(230,36,41,.08);b
 html[data-theme="light"] .disney-countdown-link:hover{background:rgba(230,36,41,.28);border-color:#e62429;color:#821319}
 html[data-theme="light"] .theme-toggle{background:#fff;border-color:#d3d2d7;color:#34343b}
 @media(max-width:600px){.theme-toggle{top:12px;right:14px}.hero{padding-top:36px}}
+.back-to-top{position:fixed;right:24px;bottom:24px;z-index:10;display:grid;width:48px;height:48px;place-items:center;border:1px solid #e62429;border-radius:50%;background:#a7191d;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer;transition:background .15s,transform .15s}
+.back-to-top:hover{background:#e62429;transform:translateY(-2px)}
+.back-to-top:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.back-to-top svg{width:24px;height:24px}
+.back-to-top[hidden]{display:none}
+@media(max-width:600px){.back-to-top{right:16px;bottom:16px}}

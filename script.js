@@ -557,6 +557,14 @@ const setTheme=theme=>{
 };
 setTheme(document.documentElement.dataset.theme);
 themeToggle.addEventListener("click",()=>setTheme(document.documentElement.dataset.theme==="light"?"dark":"light"));
+const backToTop=$("#backToTop");
+const updateBackToTop=()=>{backToTop.hidden=window.scrollY<300};
+window.addEventListener("scroll",updateBackToTop,{passive:true});
+backToTop.addEventListener("click",()=>window.scrollTo({
+ top:0,
+ behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"
+}));
+updateBackToTop();
 let auth=null, db=null, currentUser=null, cloudReady=false;
 let syncQueue=Promise.resolve();
 let cloudLoadPromise=Promise.resolve();

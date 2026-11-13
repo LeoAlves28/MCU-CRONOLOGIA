@@ -89,6 +89,10 @@
   <dialog id="posterDialog" class="poster-dialog" aria-labelledby="posterTitle">
     <button id="closePoster" class="poster-close" type="button" aria-label="Fechar pôster">×</button>
     <div id="posterArt" class="poster-art">
+      <div id="posterLoading" class="poster-loading" role="status" aria-live="polite" hidden>
+        <span class="poster-loading-spinner" aria-hidden="true"></span>
+        <span>Carregando pôster...</span>
+      </div>
       <img id="posterImage" alt="" hidden>
       <div id="posterPlaceholder" class="poster-placeholder">
         <span class="poster-placeholder-brand">MARVEL STUDIOS</span>

@@ -71,6 +71,11 @@ html[data-theme="light"] .theme-toggle{background:#fff;border-color:#d3d2d7;colo
 .poster-dialog::backdrop{background:rgba(0,0,0,.72)}
 .poster-close{position:absolute;top:24px;right:24px;z-index:1;display:grid;width:36px;height:36px;place-items:center;border:1px solid #555;border-radius:50%;background:rgba(15,15,18,.82);color:#fff;font-size:24px;line-height:1;cursor:pointer}
 .poster-art{width:min(100%,300px);aspect-ratio:2/3;margin:0 auto 16px;overflow:hidden;border-radius:10px;background:radial-gradient(ellipse at 50% 20%,#641b21,#171316 72%)}
+.poster-art.is-loading{display:grid;place-items:center;background:#242428}
+.poster-loading{display:flex;flex-direction:column;align-items:center;gap:12px;color:#c5c5ca;font-size:13px}
+.poster-loading[hidden]{display:none}
+.poster-loading-spinner{width:28px;height:28px;border:3px solid #555;border-top-color:#ddd;border-radius:50%;animation:poster-spin .8s linear infinite}
+@keyframes poster-spin{to{transform:rotate(360deg)}}
 .poster-art img{display:block;width:100%;height:100%;object-fit:contain}
 .poster-art img[hidden]{display:none}
 .poster-placeholder{display:flex;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}

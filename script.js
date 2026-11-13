@@ -559,8 +559,11 @@ const themeToggle=$("#themeToggle");
 const posterDialog=$("#posterDialog");
 const posterImage=$("#posterImage");
 const posterArt=$("#posterArt");
+const posterLoading=$("#posterLoading");
 const posterPlaceholder=$("#posterPlaceholder");
+let posterLoadToken=0;
 const showPoster=(item,done)=>{
+ const loadToken=++posterLoadToken;
  const [,title,meta,phase]=item;
  const id=itemId(item);
  const posterSlug=posterAliasesById.get(id)||id.replace(/-temporada-\d+$/,"");
@@ -572,16 +575,30 @@ const showPoster=(item,done)=>{
  $("#posterPlaceholderPhase").textContent=phase;
  posterImage.alt=`Pôster de ${title}`;
  posterArt.style.aspectRatio="2 / 3";
+ posterArt.classList.add("is-loading");
+ posterImage.hidden=true;
+ posterLoading.hidden=false;
+ posterPlaceholder.hidden=true;
  if(posterUrl){
-  posterImage.onload=()=>{posterArt.style.aspectRatio=`${posterImage.naturalWidth} / ${posterImage.naturalHeight}`};
-  posterImage.onerror=()=>{posterImage.hidden=true;posterPlaceholder.hidden=false};
+  posterImage.onload=()=>{
+   if(loadToken!==posterLoadToken)return;
+   posterArt.style.aspectRatio=`${posterImage.naturalWidth} / ${posterImage.naturalHeight}`;
+   posterImage.hidden=false;
+   posterLoading.hidden=true;
+   posterArt.classList.remove("is-loading");
+  };
+  posterImage.onerror=()=>{
+   if(loadToken!==posterLoadToken)return;
+   posterLoading.hidden=true;
+   posterPlaceholder.hidden=false;
+   posterArt.classList.remove("is-loading");
+  };
   posterImage.src=posterUrl;
-  posterImage.hidden=false;
-  posterPlaceholder.hidden=true;
  }else{
-  posterImage.hidden=true;
   posterImage.removeAttribute("src");
+  posterLoading.hidden=true;
   posterPlaceholder.hidden=false;
+  posterArt.classList.remove("is-loading");
  }
  posterDialog.showModal();
 };

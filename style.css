@@ -90,3 +90,79 @@ html[data-theme="light"] .poster-dialog{border-color:#dedde0;background:#fff;col
 html[data-theme="light"] .poster-info p{color:#626269}
 html[data-theme="light"] .poster-button{background:#fff;border-color:#d3d2d7;color:#29292f}
 @media(max-width:600px){.poster-dialog{padding:14px}.poster-close{top:20px;right:20px}.item-actions{grid-column:3;justify-content:flex-start}}
+
+.item{
+  transition:transform 300ms ease-in-out,border-color 300ms ease-in-out,box-shadow 300ms ease-in-out;
+  transform-origin:center;
+}
+.item:hover{
+  border-color:#45454d;
+  transform:scale(1.05);
+  box-shadow:0 10px 26px rgba(0,0,0,.28);
+  z-index:1;
+}
+.item:active{transform:scale(.98)}
+.check-control{
+  position:relative;
+  display:grid;
+  width:21px;
+  height:21px;
+  place-items:center;
+  cursor:pointer;
+}
+.check-control .check{
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+.check-mark{
+  position:relative;
+  display:block;
+  width:21px;
+  height:21px;
+  border:1px solid #777780;
+  border-radius:6px;
+  background:#202025;
+  transition:background 300ms ease-in-out,border-color 300ms ease-in-out,transform 300ms ease-in-out,box-shadow 300ms ease-in-out;
+}
+.check-control:hover .check-mark{
+  border-color:#e62429;
+  transform:scale(1.08);
+}
+.check-control:active .check-mark{transform:scale(.92)}
+.check-control .check:focus-visible + .check-mark{
+  outline:2px solid #fff;
+  outline-offset:3px;
+}
+.check-control .check:checked + .check-mark{
+  border-color:#e62429;
+  background:#e62429;
+  box-shadow:0 0 0 3px rgba(230,36,41,.12);
+}
+.check-control .check:checked + .check-mark::after{
+  content:"";
+  position:absolute;
+  left:7px;
+  top:3px;
+  width:5px;
+  height:10px;
+  border:solid #fff;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.actions button,.filter,.theme-toggle,.back-to-top,.watch-button,.poster-button,.disney-countdown-link{
+  transition:background 300ms ease-in-out,border-color 300ms ease-in-out,color 300ms ease-in-out,transform 300ms ease-in-out;
+}
+.actions button:active,.filter:active,.theme-toggle:active,.watch-button:active,.poster-button:active,.disney-countdown-link:active{
+  transform:scale(.96);
+}
+html[data-theme="light"] .check-mark{
+  border-color:#aaaab1;
+  background:#fff;
+}
+html[data-theme="light"] .check-control .check:checked + .check-mark{
+  border-color:#e62429;
+  background:#e62429;
+}

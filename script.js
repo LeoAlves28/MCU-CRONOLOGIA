@@ -811,7 +811,7 @@ function render(){
     ?`<a class="watch-button" href="${watchHref(watchUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ${title}">▶ Assista</a>`
     :title==="Vingadores: Doomsday"?'<button class="watch-button" type="button" disabled>▶ Em breve</button>':"";
    const row=document.createElement("div");row.className="item"+(done?" done":"");
-   row.innerHTML=`<input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="num">${String(shown).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<button class="poster-button" type="button" aria-label="Ver pôster de ${title}" title="Ver pôster">Pôster</button><span class="tag">${phase}</span></span>`;
+   row.innerHTML=`<label class="check-control" title="Marcar ${title} como assistido"><input class="check" type="checkbox" aria-label="Marcar ${title} como assistido" ${done?"checked":""}><span class="check-mark" aria-hidden="true"></span></label><span class="num">${String(shown).padStart(2,"0")}</span><span><div class="title">${title}</div><div class="meta">${meta}</div></span><span class="item-actions">${watchButton}<button class="poster-button" type="button" aria-label="Ver pôster de ${title}" title="Ver pôster">Pôster</button><span class="tag">${phase}</span></span>`;
    row.querySelector("input").addEventListener("change",e=>{saved[id]=e.target.checked;saveProgress();update();});
    row.querySelector(".poster-button").addEventListener("click",()=>showPoster(it,done));
    list.appendChild(row);

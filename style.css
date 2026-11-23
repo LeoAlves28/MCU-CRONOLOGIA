@@ -166,3 +166,8 @@ html[data-theme="light"] .check-control .check:checked + .check-mark{
   border-color:#e62429;
   background:#e62429;
 }
+
+.auth-card button.auth-link{
+  margin-left:auto;
+  width:auto;
+}

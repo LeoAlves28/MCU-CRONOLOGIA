@@ -652,6 +652,7 @@ function firebaseErrorMessage(error){
   "auth/invalid-credential":"E-mail ou senha incorretos.",
   "auth/email-already-in-use":"Este e-mail já possui uma conta.",
   "auth/weak-password":"A senha precisa ter pelo menos 6 caracteres.",
+  "auth/too-many-requests":"Muitas tentativas. Aguarde alguns minutos antes de tentar novamente.",
   "auth/operation-not-allowed":"Ative o método E-mail/senha no Firebase Authentication.",
   "auth/network-request-failed":"Falha de rede ao acessar o Firebase. Verifique sua conexão.",
   "permission-denied":"Acesso ao Firestore negado. Verifique as regras de firestore.rules.",
@@ -757,8 +758,12 @@ function initializeFirebase(){
   setAuthStatus("Verificando login...");
   try{
    await auth.signInWithEmailAndPassword(email,password);
+   $("#forgotPassword").hidden=true;
   }catch(error){
    setAuthStatus(`Não foi possível entrar: ${firebaseErrorMessage(error)}`,true);
+   if(["auth/wrong-password","auth/invalid-credential"].includes(error.code)){
+    $("#forgotPassword").hidden=false;
+   }
   }
  });
  $("#createAccount").addEventListener("click",async()=>{
@@ -771,6 +776,30 @@ function initializeFirebase(){
    setAuthStatus(`Não foi possível criar a conta: ${firebaseErrorMessage(error)}`,true);
   }
  });
+ $("#forgotPassword").addEventListener("click",async()=>{
+  const emailInput=$("#authEmail");
+  const email=emailInput.value.trim();
+  if(!email){
+   emailInput.focus();
+   setAuthStatus("Informe seu e-mail para receber o link de redefinição.",true);
+   return;
+  }
+  if(!emailInput.checkValidity()){
+   emailInput.reportValidity();
+   return;
+  }
+  const button=$("#forgotPassword");
+  button.disabled=true;
+  setAuthStatus("Enviando link de redefinição...");
+  try{
+   await auth.sendPasswordResetEmail(email);
+   setAuthStatus("Link de redefinição enviado. Confira seu e-mail.");
+  }catch(error){
+   setAuthStatus(`Não foi possível enviar o link: ${firebaseErrorMessage(error)}`,true);
+  }finally{
+   button.disabled=false;
+  }
+ });
  $("#signOut").addEventListener("click",()=>auth.signOut().catch(error=>{
   setAuthStatus(`Não foi possível sair: ${firebaseErrorMessage(error)}`,true);
  }));
@@ -778,6 +807,7 @@ function initializeFirebase(){
   const previousUser=currentUser;
   currentUser=user;
   cloudReady=false;
+  $("#forgotPassword").hidden=true;
   form.hidden=!!user;
   accountControls.hidden=!user;
   $("#authTitle").hidden=!!user;

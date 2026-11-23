@@ -603,6 +603,12 @@ const showPoster=(item,done)=>{
  posterDialog.showModal();
 };
 $("#closePoster").addEventListener("click",()=>posterDialog.close());
+posterDialog.addEventListener("click",event=>{
+ if(event.target!==posterDialog)return;
+ const rect=posterDialog.getBoundingClientRect();
+ const clickedOutside=event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom;
+ if(clickedOutside)posterDialog.close();
+});
 const setTheme=theme=>{
  const selectedTheme=theme==="light"?"light":"dark";
  const label=selectedTheme==="light"?"Ativar modo escuro":"Ativar modo claro";

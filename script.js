@@ -555,6 +555,25 @@ if(!guestStored&& !hasStableLocal){
 saved=normalizeCompleted(saved);
 let filter="all", hideCompleted=false;
 const $=s=>document.querySelector(s);
+const introScreen=$("#introScreen");
+const enterChronology=$("#enterChronology");
+const closeIntro=()=>{
+ introScreen.classList.add("is-leaving");
+ document.body.classList.remove("intro-active");
+ window.setTimeout(()=>{
+  introScreen.hidden=true;
+  introScreen.classList.remove("is-opening","is-leaving");
+ },550);
+};
+document.body.classList.add("intro-active");
+enterChronology.focus();
+window.setTimeout(()=>{
+ if(!introScreen.hidden)closeIntro();
+},5000);
+enterChronology.addEventListener("click",closeIntro);
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape"&&!introScreen.hidden)closeIntro();
+});
 const doomsdayReleaseDate=new Date("2026-12-18T00:00:00-03:00");
 function updateDoomsdayCountdown(){
  const remaining=Math.max(0,doomsdayReleaseDate.getTime()-Date.now());
@@ -567,6 +586,10 @@ function updateDoomsdayCountdown(){
  $("#countdownHours").textContent=String(hours).padStart(2,"0");
  $("#countdownMinutes").textContent=String(minutes).padStart(2,"0");
  $("#countdownSeconds").textContent=String(seconds).padStart(2,"0");
+ $("#introDays").textContent=String(days).padStart(2,"0");
+ $("#introHours").textContent=String(hours).padStart(2,"0");
+ $("#introMinutes").textContent=String(minutes).padStart(2,"0");
+ $("#introSeconds").textContent=String(seconds).padStart(2,"0");
  if(remaining===0){
   $("#doomsdayCountdown").setAttribute("aria-label","Avengers: Doomsday já estreou");
  }
@@ -738,7 +761,7 @@ async function loadCloudProgress(user){
 }
 
 function initializeFirebase(){
- const form=$("#authForm"), accountControls=$("#accountControls");
+ const form=$("#authForm");
  if(!firebaseIsConfigured()){
   setAuthStatus("Firebase não configurado. O login está indisponível; o progresso fica salvo neste navegador.",true);
   form.querySelectorAll("button").forEach(button=>button.disabled=true);
@@ -827,7 +850,10 @@ function initializeFirebase(){
   cloudReady=false;
   $("#forgotPassword").hidden=true;
   form.hidden=!!user;
-  accountControls.hidden=!user;
+  $("#authCard").hidden=!!user;
+  $("#profileMenu").hidden=!user;
+  $("#profileDropdown").hidden=true;
+  $("#profileMenuToggle").setAttribute("aria-expanded","false");
   $("#authTitle").hidden=!!user;
   if(user){
    $("#accountEmail").textContent=user.email||"Conta conectada";
@@ -845,6 +871,27 @@ function initializeFirebase(){
   }
  },error=>setAuthStatus(`Falha ao verificar a sessão: ${firebaseErrorMessage(error)}`,true));
 }
+
+const profileMenuToggle=$("#profileMenuToggle");
+const profileDropdown=$("#profileDropdown");
+profileMenuToggle.addEventListener("click",()=>{
+ const isExpanded=profileMenuToggle.getAttribute("aria-expanded")==="true";
+ profileMenuToggle.setAttribute("aria-expanded",String(!isExpanded));
+ profileDropdown.hidden=isExpanded;
+});
+document.addEventListener("click",event=>{
+ if(!$("#profileMenu").contains(event.target)){
+  profileDropdown.hidden=true;
+  profileMenuToggle.setAttribute("aria-expanded","false");
+ }
+});
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape"&&!profileDropdown.hidden){
+  profileDropdown.hidden=true;
+  profileMenuToggle.setAttribute("aria-expanded","false");
+  profileMenuToggle.focus();
+ }
+});
 
 function render(){
  const q=$("#search").value.toLowerCase().trim(), list=$("#list");
@@ -877,6 +924,10 @@ function update(doRender=true){
  const total=items.length, done=items.filter(item=>saved[itemId(item)]).length, pct=total?Math.round(done/total*100):0;
  $("#progressText").textContent=`${done}/${total}`;
  $("#percent").textContent=pct+"%"; $("#barFill").style.width=pct+"%";
+ $("#introProgress").hidden=!currentUser;
+ if(currentUser){
+  $("#introProgressText").textContent=`${done}/${total} · ${pct}%`;
+ }
  if(doRender)render();
 }
 document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render()}));

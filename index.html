@@ -9,6 +9,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <section id="introScreen" class="intro-screen" aria-label="Tela de abertura" role="dialog" aria-modal="true">
+    <div class="intro-grid" aria-hidden="true"></div>
+    <div class="intro-orbit intro-orbit-one" aria-hidden="true"></div>
+    <div class="intro-orbit intro-orbit-two" aria-hidden="true"></div>
+    <div class="intro-content">
+      <div class="intro-brand">MARVEL <span>STUDIOS</span></div>
+      <p class="intro-universe">UNIVERSO 616</p>
+      <h2>CRONOLOGIA<br>DO MCU</h2>
+      <p class="intro-tagline">Toda história. Um universo. Sua jornada.</p>
+      <button id="enterChronology" class="intro-enter" type="button">
+        Entrar no universo
+        <span aria-hidden="true">→</span>
+      </button>
+      <div class="intro-details">
+        <div id="introProgress" class="intro-progress" hidden>
+          <span>Seu progresso</span>
+          <strong id="introProgressText">0/0 · 0%</strong>
+        </div>
+        <div class="intro-countdown" aria-label="Contagem regressiva para Avengers: Doomsday">
+          <span>ESTREIA DE DOOMSDAY EM</span>
+          <div class="intro-countdown-units" aria-hidden="true">
+            <div><strong id="introDays">00</strong><small>dias</small></div>
+            <div><strong id="introHours">00</strong><small>horas</small></div>
+            <div><strong id="introMinutes">00</strong><small>min</small></div>
+            <div><strong id="introSeconds">00</strong><small>seg</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="profileMenu" class="profile-menu" hidden>
+    <button id="profileMenuToggle" class="profile-menu-toggle" type="button" aria-label="Abrir menu da conta" aria-haspopup="true" aria-expanded="false" aria-controls="profileDropdown">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5"/>
+        <path d="M5 20c.7-3.4 3.2-5.2 7-5.2s6.3 1.8 7 5.2"/>
+      </svg>
+    </button>
+    <div id="profileDropdown" class="profile-dropdown" hidden>
+      <span id="accountEmail" class="profile-email"></span>
+      <button id="signOut" type="button">Sair</button>
+    </div>
+  </div>
+
   <header class="hero">
     <button id="themeToggle" class="theme-toggle" type="button" aria-label="Ativar modo claro" title="Ativar modo claro">
       <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -25,9 +69,8 @@
   </header>
 
   <main>
-    <section class="auth-card" aria-labelledby="authTitle">
+    <section id="authCard" class="auth-card" aria-labelledby="authTitle">
       <h2 id="authTitle">Sincronize seu progresso</h2>
-      <p id="authStatus" class="auth-status" role="status" aria-live="polite" hidden></p>
       <form id="authForm">
         <label>
           E-mail
@@ -43,24 +86,9 @@
           <button id="forgotPassword" class="auth-link" type="button" hidden>Esqueci minha senha</button>
         </div>
       </form>
-      <div id="accountControls" class="account-controls" hidden>
-        <span id="accountEmail"></span>
-        <button id="signOut" type="button">Sair</button>
-      </div>
       <p class="auth-help">Use a mesma conta nos seus dispositivos.</p>
     </section>
-
-    <section class="progress-card">
-      <div class="progress-top">
-        <div><strong id="progressText">0/0</strong> assistidos</div>
-        <div id="percent">0%</div>
-      </div>
-      <div class="bar"><div id="barFill"></div></div>
-      <div class="actions">
-        <button id="reset">Desmarcar tudo</button>
-        <button id="toggleCompleted">Ocultar concluídos</button>
-      </div>
-    </section>
+    <p id="authStatus" class="auth-status" role="status" aria-live="polite" hidden></p>
 
     <section class="controls">
       <aside class="disney-countdown doomsday-countdown" aria-label="Contagem regressiva para Avengers: Doomsday">
@@ -78,6 +106,17 @@
           Especial Disney+
         </a>
       </aside>
+      <section class="progress-card">
+        <div class="progress-top">
+          <div><strong id="progressText">0/0</strong> assistidos</div>
+          <div id="percent">0%</div>
+        </div>
+        <div class="bar"><div id="barFill"></div></div>
+        <div class="actions">
+          <button id="reset">Desmarcar tudo</button>
+          <button id="toggleCompleted">Ocultar concluídos</button>
+        </div>
+      </section>
       <div class="filters">
         <button class="filter active" data-filter="all">Todos</button>
         <button class="filter" data-filter="filme"> Filmes</button>

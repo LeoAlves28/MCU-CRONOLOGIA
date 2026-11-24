@@ -10,7 +10,15 @@
 .disney-countdown-link{display:inline-flex;align-items:center;gap:8px;flex-shrink:0;padding:10px 15px;border:1px solid rgba(230,36,41,.7);border-radius:999px;background:#5b171c;color:#fff0f0;font-size:13px;font-weight:700;text-decoration:none;transition:background .15s,border-color .15s}
 .disney-countdown-link:hover{background:#7d1d25;border-color:#ff777d}
 .disney-countdown-link:focus-visible{outline:2px solid #fff;outline-offset:3px}
-@media(max-width:600px){.disney-countdown{align-items:flex-start;flex-direction:column}.disney-countdown-link{align-self:stretch;justify-content:center}}
+.doomsday-countdown-heading p{margin:6px 0 0}
+.doomsday-countdown{flex-wrap:wrap}
+.doomsday-countdown-heading{flex:1 1 220px}
+.doomsday-timer{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.disney-countdown-link{flex:0 0 100%;justify-content:center;margin:2px 0 0}
+.doomsday-unit{display:grid;min-width:66px;height:66px;place-items:center;align-content:center;border:1px solid rgba(230,36,41,.55);border-radius:12px;background:rgba(12,12,15,.62)}
+.doomsday-unit strong{font-size:24px;font-variant-numeric:tabular-nums;line-height:1}
+.doomsday-unit span{margin-top:7px;color:#c9b4b5;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px}
+@media(max-width:600px){.disney-countdown{align-items:flex-start;flex-direction:column}.disney-countdown-link{align-self:stretch;justify-content:center}.doomsday-timer{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr))}.doomsday-unit{min-width:0;width:100%}}
 
 html{color-scheme:dark}
 html[data-theme="light"]{color-scheme:light}
@@ -56,6 +64,8 @@ html[data-theme="light"] .disney-countdown p{color:#626269}
 html[data-theme="light"] .disney-countdown-link{background:rgba(230,36,41,.08);border-color:rgba(230,36,41,.55);color:#a7191d}
 html[data-theme="light"] .disney-countdown-link:hover{background:rgba(230,36,41,.28);border-color:#e62429;color:#821319}
 html[data-theme="light"] .theme-toggle{background:#fff;border-color:#d3d2d7;color:#34343b}
+html[data-theme="light"] .doomsday-unit{background:rgba(255,255,255,.78);border-color:#e6b9bb}
+html[data-theme="light"] .doomsday-unit span{color:#626269}
 @media(max-width:600px){.theme-toggle{top:12px;right:14px}.hero{padding-top:36px}}
 .back-to-top{position:fixed;right:24px;bottom:24px;z-index:10;display:grid;width:48px;height:48px;place-items:center;border:1px solid #e62429;border-radius:50%;background:#a7191d;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer;transition:background .15s,transform .15s}
 .back-to-top:hover{background:#e62429;transform:translateY(-2px)}

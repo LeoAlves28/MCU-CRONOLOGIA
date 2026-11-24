@@ -64,13 +64,19 @@
 
     <section class="controls">
       <input id="search" type="search" placeholder=" Procurar filme, série ou curta...">
-      <aside class="disney-countdown">
-        <div>
-          <span class="disney-countdown-label">EXCLUSIVO NO DISNEY+</span>
-          <h2>Contagem regressiva: Doomsday</h2>
+      <aside class="disney-countdown doomsday-countdown" aria-label="Contagem regressiva para Avengers: Doomsday">
+        <div class="doomsday-countdown-heading">
+          <span class="disney-countdown-label">ESTREIA NOS CINEMAS — 18/12/2026</span>
+          <h2>Avengers: Doomsday</h2>
+        </div>
+        <div id="doomsdayCountdown" class="doomsday-timer" role="timer" aria-live="polite" aria-atomic="true">
+          <div class="doomsday-unit"><strong id="countdownDays">00</strong><span>Dias</span></div>
+          <div class="doomsday-unit"><strong id="countdownHours">00</strong><span>Horas</span></div>
+          <div class="doomsday-unit"><strong id="countdownMinutes">00</strong><span>Min</span></div>
+          <div class="doomsday-unit"><strong id="countdownSeconds">00</strong><span>Seg</span></div>
         </div>
         <a class="disney-countdown-link" href="https://www.disneyplus.com/pt-br/browse/page-cfb0556c-d5f9-4022-9bf3-e28af2ced14d" target="_blank" rel="noopener noreferrer">
-          Abrir no Disney+
+          Especial Disney+
         </a>
       </aside>
       <div class="filters">

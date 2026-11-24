@@ -555,6 +555,24 @@ if(!guestStored&& !hasStableLocal){
 saved=normalizeCompleted(saved);
 let filter="all", hideCompleted=false;
 const $=s=>document.querySelector(s);
+const doomsdayReleaseDate=new Date("2026-12-18T00:00:00-03:00");
+function updateDoomsdayCountdown(){
+ const remaining=Math.max(0,doomsdayReleaseDate.getTime()-Date.now());
+ const totalSeconds=Math.floor(remaining/1000);
+ const days=Math.floor(totalSeconds/86400);
+ const hours=Math.floor((totalSeconds%86400)/3600);
+ const minutes=Math.floor((totalSeconds%3600)/60);
+ const seconds=totalSeconds%60;
+ $("#countdownDays").textContent=String(days).padStart(2,"0");
+ $("#countdownHours").textContent=String(hours).padStart(2,"0");
+ $("#countdownMinutes").textContent=String(minutes).padStart(2,"0");
+ $("#countdownSeconds").textContent=String(seconds).padStart(2,"0");
+ if(remaining===0){
+  $("#doomsdayCountdown").setAttribute("aria-label","Avengers: Doomsday já estreou");
+ }
+}
+updateDoomsdayCountdown();
+setInterval(updateDoomsdayCountdown,1000);
 const themeToggle=$("#themeToggle");
 const posterDialog=$("#posterDialog");
 const posterImage=$("#posterImage");

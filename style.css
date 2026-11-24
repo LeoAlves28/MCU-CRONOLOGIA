@@ -20,7 +20,7 @@
 .doomsday-unit{display:grid;min-width:66px;height:66px;place-items:center;align-content:center;border:1px solid rgba(230,36,41,.55);border-radius:12px;background:rgba(12,12,15,.62)}
 .doomsday-unit strong{font-size:24px;font-variant-numeric:tabular-nums;line-height:1}
 .doomsday-unit span{margin-top:7px;color:#c9b4b5;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px}
-@media(max-width:600px){.disney-countdown{align-items:flex-start;flex-direction:column}.disney-countdown-link{align-self:stretch;justify-content:center}.doomsday-timer{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr))}.doomsday-unit{min-width:0;width:100%}}
+@media(max-width:600px){.disney-countdown{align-items:flex-start;flex-direction:column}.disney-countdown-link{align-self:stretch;justify-content:center}.doomsday-countdown{gap:14px}.doomsday-countdown-heading{width:100%;flex:0 1 auto}.doomsday-timer{display:grid;align-self:stretch;width:100%;grid-template-columns:repeat(4,minmax(0,1fr))}.doomsday-unit{min-width:0;width:100%}}
 
 html{color-scheme:dark}
 html[data-theme="light"]{color-scheme:light}
